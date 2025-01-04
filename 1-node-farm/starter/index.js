@@ -9,3 +9,9 @@ fs.writeFileSync("./txt/output.txt", textOut);
 
 console.log(fs.readFileSync("./txt/output.txt", "utf8"));
 // lets test the async version now
+fs.readFile("./txt/start.txt", "utf8", (err, data) => {
+  console.log(data);
+});
+console.log("Reading file...");
+// lets test the async version now
+    
