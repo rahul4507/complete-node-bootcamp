@@ -8,3 +8,4 @@ console.log(textOut);
 fs.writeFileSync("./txt/output.txt", textOut);
 
 console.log(fs.readFileSync("./txt/output.txt", "utf8"));
+// lets test the async version now
