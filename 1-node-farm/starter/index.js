@@ -41,16 +41,25 @@ const http = require("http");
 
 /////////////////// ********************************************** //////////////////////
 // SERVER
-
+// gets excuted only once so no problem at all
+data = fs.readFileSync("./dev-data/data.json", "utf-8");
+const dataObj = JSON.parse(data);
+// this excutes every time a request is made
 const server = http.createServer((req, res) => {
   console.log(req.url);
-
   const pathName = req.url;
+
   if (pathName === "/" || pathName === "/overview") {
     res.end("This is the OVERVIEW");
     return;
   } else if (pathName === "/product") {
     res.end("This is the PRODUCT");
+    return;
+  } else if (pathName === "/api") {
+    res.writeHead(200, {
+      "Content-type": "application/json",
+    });
+    res.end(data);
     return;
   } else {
     res.writeHead(404, {
@@ -60,8 +69,6 @@ const server = http.createServer((req, res) => {
     res.end("<h1>Page not found</h1>");
     return;
   }
-
-  res.end("Hello from the server!");
 });
 
 server.listen(8000, "127.0.0.1", () => {
